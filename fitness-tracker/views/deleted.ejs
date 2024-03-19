@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workouts</title>
+    <title>Deleted Workouts</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-    <h1>Workouts</h1>
+    <h1>Deleted Workouts</h1>
     <ul>
-        <% workouts.forEach(workout => { %>
+        <% deletedWorkouts.forEach(workout => { %>
             <li>
                 <strong>Workout Name:</strong> <%= workout.workout_name %><br>
                 <strong>Type:</strong> <%= workout.workout_type %><br>
@@ -18,15 +18,14 @@
                 <% if (workout.notes) { %>
                     <strong>Notes:</strong> <%= workout.notes %><br>
                 <% } %>
-                <!-- Form for deleting the workout -->
-                <form action="/workouts/<%= workout.workout_id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit" style="color: red;">Delete</button>
+                <form action="/workouts/restore/<%= workout.workout_id %>" method="POST">
+                    <button type="submit">Restore</button>
                 </form>
-                <!-- Link to edit the workout -->
-                <a href="/edit/<%= workout.workout_id %>">Edit</a>
             </li>
         <% }); %>
     </ul>
+    <a href="/workouts">Back to Workouts</a>
+    <br>
     <a href="/">Home</a>
 </body>
 </html>
