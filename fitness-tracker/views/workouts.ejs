@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workouts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>Workouts</h1>
+    <ul>
+        <% workouts.forEach(workout => { %>
+            <li>
+                <strong>Workout Name:</strong> <%= workout.workout_name %><br>
+                <strong>Type:</strong> <%= workout.workout_type %><br>
+                <strong>Duration:</strong> <%= workout.duration_minutes %> minutes<br>
+                <strong>Calories Burned:</strong> <%= workout.calories_burned %><br>
+                <% if (workout.notes) { %>
+                    <strong>Notes:</strong> <%= workout.notes %><br>
+                <% } %>
+                <a href="/edit/<%= workout.workout_id %>">Edit</a>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

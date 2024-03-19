@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Workout</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>Edit Workout</h1>
+    <form action="/workouts/<%= workout.workout_id %>?_method=PUT" method="POST">
+        <label for="workout_name">Workout Name:</label>
+        <input type="text" id="workout_name" name="workout_name" value="<%= workout.workout_name %>"><br>
+        <label for="workout_type">Workout Type:</label>
+        <input type="text" id="workout_type" name="workout_type" value="<%= workout.workout_type %>"><br>
+        <label for="duration_minutes">Duration (minutes):</label>
+        <input type="number" id="duration_minutes" name="duration_minutes" value="<%= workout.duration_minutes %>"><br>
+        <label for="calories_burned">Calories Burned:</label>
+        <input type="number" id="calories_burned" name="calories_burned" value="<%= workout.calories_burned %>"><br>
+        <label for="notes">Notes:</label><br>
+        <textarea id="notes" name="notes"><%= workout.notes %></textarea><br>
+        <button type="submit">Update Workout</button>
+    </form>
+</body>
+</html>
