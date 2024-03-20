@@ -92,6 +92,21 @@ function handleDatabaseError(message, error) {
   throw error;
 }
 
+async function updateWorkout(id, workoutData) {
+  try {
+    const { workout_name, workout_type, duration_minutes, calories_burned, notes } = workoutData;
+
+    await pool.query(
+      'UPDATE workouts SET workout_name = $1, workout_type = $2, duration_minutes = $3, calories_burned = $4, notes = $5 WHERE workout_id = $6',
+      [workout_name, workout_type, duration_minutes, calories_burned, notes, id]
+    );
+
+    console.log('Workout updated successfully');
+  } catch (error) {
+    handleDatabaseError('Error updating workout:', error);
+  }
+}
+
 module.exports = {
   getAllWorkouts,
   getWorkoutById,
@@ -99,5 +114,7 @@ module.exports = {
   deleteWorkout,
   getAllDeletedWorkouts,
   restoreWorkout,
-  getDeletedWorkoutById
+  getDeletedWorkoutById,
+  updateWorkout
 };
+

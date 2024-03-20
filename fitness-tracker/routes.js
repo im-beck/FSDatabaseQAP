@@ -94,4 +94,16 @@ router.delete('/workouts/:id', async (req, res) => {
   }
 });
 
+router.put('/workouts/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { workout_name, workout_type, duration_minutes, calories_burned, notes } = req.body;
+    await db.updateWorkout(id, { workout_name, workout_type, duration_minutes, calories_burned, notes });
+    res.redirect('/workouts');
+  } catch (err) {
+    handleError(err, res);
+  }
+});
+
+
 module.exports = router;
